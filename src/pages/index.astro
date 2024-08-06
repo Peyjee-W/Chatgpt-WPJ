@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Generator from '../components/Generator'
+import '../message.css'
+import 'katex/dist/katex.min.css'
+import 'highlight.js/styles/atom-one-dark.css'
+---
+
+<Layout title="ChatGPT WPJ">
+  <main >
+    <Header />
+    <Generator client:load />
+    <Footer />
+    <div class="readme">
+      
+<head>
+<style>
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  text-indent: 2em;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+
+img {
+  width: 800px;
+  height: auto;
+}
+
+</style>
+</head>
+<body>
+<h1>亲爱的用户，您好！</h1>
+<p>感谢您使用我的聊天机器人网站，我很高兴能为您提供一个可以和用户自然语言交流的服务。在这里，您可以学习、咨询、娱乐等等，让您感受到人性化和智能化的服务。我希望您能在这里找到满意和帮助。</p>
+<p>为了给您提供更优质和更流畅的服务，我使用了ChatGPT API，这是一个由OpenAI开发的先进的人工智能技术。它可以根据您的输入生成合适的回答，让您感觉像是在和真人聊天一样。我认为这是一个非常棒的技术，它可以让我们更好地理解和沟通。</p>
+<p>谢谢您对我的网站的喜爱和信任，我会继续努力让它变得更好。如果您有任何建议或反馈，请随时联系我。我期待着听到您的声音。</p>
+<p>聊天机器人网站运营者</p>
+<img src="https://kk.clock8863.com/d/one/%E5%9B%BE%E7%89%87/Download/QRCode.jpg" alt="个人微信">
+
+
+   
+</body>
+</div>
+  </main>
+</Layout>
+
+<script>
+async function checkCurrentAuth() {
+  const password = localStorage.getItem('pass')
+  const response = await fetch('/api/auth', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      pass: password,
+    }),
+  })
+  const responseJson = await response.json()
+  if (responseJson.code !== 0)
+    window.location.href = '/password'
+}
+checkCurrentAuth()
+</script>
